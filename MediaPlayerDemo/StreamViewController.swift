@@ -11,8 +11,9 @@ import UIKit
 import MediaPlayer
 import AVKit
 
-class StreamViewController: UIViewController {
+class StreamViewController: UIViewController{
     
+    @IBOutlet weak var videoView: UIView!
     let player = AVPlayer(URL: NSURL(string: "http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8")!)
     let playerViewController = AVPlayerViewController()
     
@@ -24,8 +25,11 @@ class StreamViewController: UIViewController {
 
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         self.playerViewController.player = player
+        self.playerViewController.view.frame = CGRectMake(0, 0, 100, 100)
+        
         self.presentViewController(self.playerViewController, animated: true) {
             self.playerViewController.player!.play()
         }
